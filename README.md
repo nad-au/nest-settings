@@ -1,0 +1,2 @@
+# nest-settings
+Settings API
