@@ -21,6 +21,7 @@ $ docker-compose up
 Run migrations to provision your database schema.
 
 ``` bash
+npm run build
 npm run typeorm migration:run
 ```
 
