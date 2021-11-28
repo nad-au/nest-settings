@@ -25,8 +25,7 @@ import { createConnection } from 'typeorm';
       username: configService.get('database.user'),
       password: configService.get('database.password'),
       database: configService.get('database.name'),
-      autoLoadEntities: true,
-      synchronize: true,
+      autoLoadEntities: true
     }),
     // connectionFactory receives the configured ConnectionOptions
     // and returns a Promise<Connection>.
