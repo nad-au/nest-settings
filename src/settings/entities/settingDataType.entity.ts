@@ -11,7 +11,8 @@ export class SettingDataType extends EntityBase {
     id: number;
 
     @Column({
-        unique: true
+        nullable: false,
+        unique: true,
     })
     name: string;
 

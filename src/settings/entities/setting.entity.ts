@@ -1,7 +1,10 @@
+import { type } from "os";
+import { AccountSetting } from "src/accounts/entities/accountSetting.entity";
 import { EntityBase } from "src/common/entities/EntityBase";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { SettingCategory } from "./settingCategory.entity";
 import { SettingDataType } from "./settingDataType.entity";
+import { SettingType } from "./settingType.entity";
 
 @Entity({
     name: 'settings'
@@ -23,8 +26,7 @@ export class Setting extends EntityBase {
     description: string;
 
     @Column({
-        name: 'default_value',
-        nullable: true
+        name: 'default_value'
     })
     defaultValue: string;
 
@@ -34,14 +36,23 @@ export class Setting extends EntityBase {
     enabled: boolean;
 
     @ManyToOne(() => SettingCategory, category => category.settings, {
-        onDelete: 'CASCADE',
-        nullable: false
+        nullable: false,
+        onDelete: 'CASCADE'
     })
     category: SettingCategory;
 
+    @ManyToOne(() => SettingType, type => type.settings, {
+        nullable: false,
+        onDelete: 'CASCADE'
+    })
+    type: SettingType;
+
     @ManyToOne(() => SettingDataType, dataType => dataType.settings, {
-        onDelete: 'CASCADE',
-        nullable: false
+        nullable: false,
+        onDelete: 'CASCADE'
     })
     dataType: SettingDataType;
+
+    @OneToMany(() => AccountSetting, accountSetting => accountSetting.account)
+    accountSettings: AccountSetting[];
 }

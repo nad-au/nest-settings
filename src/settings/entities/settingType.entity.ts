@@ -3,9 +3,9 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Setting } from "./setting.entity";
 
 @Entity({
-    name: 'setting_categories'
+    name: 'setting_types'
 })
-export class SettingCategory extends EntityBase {
+export class SettingType extends EntityBase {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -16,6 +16,6 @@ export class SettingCategory extends EntityBase {
     })
     name: string;
 
-    @OneToMany(() => Setting, setting => setting.category)
+    @OneToMany(() => Setting, setting => setting.type)
     settings: Setting[];
 }
