@@ -53,5 +53,12 @@ jobs:
       uses: azure/appservice-settings@v1
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        app-settings-json: '{"TestVar1": "false", "TestVar2": "true"}' 
+        app-settings-json: |
+         [
+             {
+                 "name": "DOCKER_REGISTRY_SERVER_URL",
+                 "value": "https://contoso.azurecr.io",
+                 "slotSetting": false
+             }
+         ]
       id: settings  
