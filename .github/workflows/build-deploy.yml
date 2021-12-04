@@ -53,9 +53,6 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: 'List Web Apps'
-      run: |
-        az webapp list --query "[?state=='Running']"    
     - name: 'Configuration'
       uses: azure/appservice-settings@v1
       with:
