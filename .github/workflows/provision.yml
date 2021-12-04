@@ -27,16 +27,35 @@ jobs:
       with:
         azcliversion: ${{ env.AZ_CLI_VERSION }}
         inlineScript: |
-          echo "::set-output name=DB::$(
-            az postgres flexible-server create --location ${{ env.AZ_LOCATION }} --resource-group ${{ env.AZ_RESOURCE_GROUP }} \
-            --name ${{ env.AZ_DATABASE_NAME }} --database-name ${{ env.DATABASE_NAME }}  \
-            --sku-name Standard_B1ms --tier Burstable --public-access all --version 13 -o json
-          )"
-
+          DB=$(az postgres flexible-server create --location ${{ env.AZ_LOCATION }} --resource-group ${{ env.AZ_RESOURCE_GROUP }} \
+          --name ${{ env.AZ_DATABASE_NAME }} --database-name ${{ env.DATABASE_NAME }}  \
+          --sku-name Standard_B1ms --tier Burstable --public-access all --version 13 -o json)
+          echo "::set-output name=DB::$DB"
+# Example output
+# {
+#   "connectionString": "postgresql://nestadmin:xxxx@pg-nest-settings.postgres.database.azure.com/postgres?sslmode=require",
+#   "databaseName": "nest-settings",
+#   "firewallName": "AllowAll_2021-12-4_13-7-43",
+#   "host": "pg-nest-settings.postgres.database.azure.com",
+#   "id": "/subscriptions/c9d9b3ef-44e7-470e-bfce-7d0938297a3a/resourceGroups/rg-nest-settings/providers/Microsoft.DBforPostgreSQL/flexibleServers/pg-nest-settings",
+#   "location": "Australia East",
+#   "password": "xxxx",
+#   "resourceGroup": "rg-nest-settings",
+#   "skuname": "Standard_B1ms",
+#   "username": "nestadmin",
+#   "version": "13"
+# }
     - name: Store DB settings as secret
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
-        name: 'AZ_DB_SETTINGS'
-        value: ${{ steps.createdb.outputs.DB }}
+        name: 'AZ_DB_USER'
+        value: ${{ fromJson(steps.createdb.outputs.DB).username }}
+        repository: ${{ github.repository }}
+        token: ${{ secrets.ACCESS_TOKEN }}
+    - name: Store DB settings as secret
+      uses: hmanzur/actions-set-secret@v2.0.0
+      with:
+        name: 'AZ_DB_PASSWORD'
+        value: ${{ fromJson(steps.createdb.outputs.DB).password }}
         repository: ${{ github.repository }}
         token: ${{ secrets.ACCESS_TOKEN }}
