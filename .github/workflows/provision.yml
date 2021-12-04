@@ -1,5 +1,6 @@
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    branches: [ main ]
 
 env:
   AZ_CLI_VERSION: '2.30.0'
@@ -16,14 +17,14 @@ jobs:
     environment: production
     steps:
     - name: Log in with Azure
-        uses: azure/login@v1
-        with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      uses: azure/login@v1
+      with:
+      creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Azure CLI script
-        uses: azure/CLI@v1
-        id: createdb
-        with:
+      uses: azure/CLI@v1
+      id: createdb
+      with:
         azcliversion: ${{ env.AZ_CLI_VERSION }}
         inlineScript: |
           echo "::set-output name=DB::$(
@@ -32,5 +33,5 @@ jobs:
             --sku-name Standard_B1ms --tier Burstable --public-access all --version 13 -o json
           )"
     - name: Get DB
-        run: |
+      run: |
           echo "DB: ${{ steps.createdb.outputs.DB }}"
