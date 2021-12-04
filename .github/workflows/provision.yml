@@ -48,14 +48,14 @@ jobs:
 #   "username": "nestadmin",
 #   "version": "13"
 # }
-    - name: [Secret] store db username
+    - name: '[Secret] store db username'
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
         name: 'AZ_DB_USER'
         value: ${{ steps.createdb.outputs.USERNAME }}
         repository: ${{ github.repository }}
         token: ${{ secrets.ACCESS_TOKEN }}
-    - name: [Secret] store db password
+    - name: '[Secret] store db password'
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
         name: 'AZ_DB_PASSWORD'
