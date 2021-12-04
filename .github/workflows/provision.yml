@@ -32,6 +32,11 @@ jobs:
             --name ${{ env.AZ_DATABASE_NAME }} --database-name ${{ env.DATABASE_NAME }}  \
             --sku-name Standard_B1ms --tier Burstable --public-access all --version 13 -o json
           )"
-    - name: Get DB
-      run: |
-          echo "DB: ${{ steps.createdb.outputs.DB }}"
+
+    - name: Store DB settings as secret
+      uses: hmanzur/actions-set-secret@v2.0.0
+      with:
+        name: 'AZ_DB_SETTINGS'
+        value: ${{ steps.createdb.outputs.DB }}
+        repository: ${{ github.repository }}
+        token: ${{ secrets.ACCESS_TOKEN }}
