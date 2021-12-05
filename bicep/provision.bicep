@@ -2,10 +2,15 @@
 @minLength(10)
 param password string
 
+@allowed([
+  'production'
+])
+param environmentName string
+
 module env './env.bicep' = {
   name: 'env'
   params: {
-    environmentName: 'prod'
+    environmentName: environmentName
   }
 }
 

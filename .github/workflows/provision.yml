@@ -29,4 +29,4 @@ jobs:
         subscriptionId: ${{ env.AZ_SUBSCRIPTION }}
         resourceGroupName: ${{ env.AZ_RESOURCE_GROUP }}
         template: bicep/provision.bicep
-        parameters: password=${{ secrets.AZ_DB_PASSWORD }}
+        parameters: password=${{ secrets.AZ_DB_PASSWORD }} environmentName='production'
