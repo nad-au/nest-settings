@@ -1,21 +1,20 @@
-import { EntityBase } from "src/common/entities/EntityBase";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Setting } from "./setting.entity";
+import { EntityBase } from 'src/common/entities/EntityBase';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Setting } from './setting.entity';
 
 @Entity({
-    name: 'setting_types'
+  name: 'setting_types',
 })
 export class SettingType extends EntityBase {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column({
+    nullable: false,
+    unique: true,
+  })
+  name: string;
 
-    @Column({
-        nullable: false,
-        unique: true,
-    })
-    name: string;
-
-    @OneToMany(() => Setting, setting => setting.type)
-    settings: Setting[];
+  @OneToMany(() => Setting, (setting) => setting.type)
+  settings: Setting[];
 }

@@ -6,6 +6,13 @@ import { SettingDataType } from './entities/settingDataType.entity';
 import { SettingType } from './entities/settingType.entity';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Setting, SettingCategory, SettingType, SettingDataType])]
+  imports: [
+    TypeOrmModule.forFeature([
+      Setting,
+      SettingCategory,
+      SettingType,
+      SettingDataType,
+    ]),
+  ],
 })
 export class SettingsModule {}

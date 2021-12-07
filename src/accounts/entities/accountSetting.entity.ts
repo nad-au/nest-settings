@@ -1,31 +1,41 @@
-import { EntityBase } from "src/common/entities/EntityBase";
-import { Setting } from "src/settings/entities/setting.entity";
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn, Unique } from "typeorm";
-import { Account } from "./account.entity";
+import { EntityBase } from 'src/common/entities/EntityBase';
+import { Setting } from 'src/settings/entities/setting.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+  Unique,
+} from 'typeorm';
+import { Account } from './account.entity';
 
 @Entity({
-    name: 'account_settings'
+  name: 'account_settings',
 })
-@Unique(['account','setting'])
+@Unique(['account', 'setting'])
 export class AccountSetting extends EntityBase {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column({
+    nullable: false,
+    name: 'setting_value',
+  })
+  settingValue: string;
 
-    @Column({
-        nullable: false,
-        name: 'setting_value'
-    })
-    settingValue: string;
+  @ManyToOne(() => Account, (account) => account.accountSettings, {
+    nullable: false,
+    onDelete: 'CASCADE',
+  })
+  public account: Account;
 
-    @ManyToOne(() => Account, account => account.accountSettings, {
-        nullable: false,
-        onDelete: 'CASCADE'        
-    })
-    public account: Account;
-
-    @ManyToOne(() => Setting, setting => setting.accountSettings, {
-        nullable: false,
-        onDelete: 'CASCADE'
-    })
-    public setting: Setting;}
+  @ManyToOne(() => Setting, (setting) => setting.accountSettings, {
+    nullable: false,
+    onDelete: 'CASCADE',
+  })
+  public setting: Setting;
+}
