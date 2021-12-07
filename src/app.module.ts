@@ -39,6 +39,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     }),
     SettingsModule,
     AccountsModule,
+    ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'app') }),
   ],
   controllers: [AppController],
   providers: [AppService],
