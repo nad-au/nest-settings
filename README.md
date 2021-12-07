@@ -1,7 +1,7 @@
 # Nest Settings
 ## Description
 
-An implementation of [Feature Flags](https://martinfowler.com/articles/feature-toggles.html) using [Nest](https://github.com/nestjs/nest) framework, [PostgreSQL](https://www.postgresql.org/) and [Redis](https://redis.io/).
+An implementation of [Feature Flags](https://martinfowler.com/articles/feature-toggles.html) using [Nest](https://github.com/nestjs/nest) framework, [PostgreSQL](https://www.postgresql.org/), [Redis](https://redis.io/) and [Vue.js](https://vuejs.org/).
 
 ## Requirements
 - [Node](https://nodejs.org/en/)
