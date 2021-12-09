@@ -22,7 +22,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: nest-settings    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  AZURE_WEBAPP_PACKAGE_PATH: 'dist'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '14.x'                # set this to the node version to use
 
 jobs:
@@ -36,16 +36,16 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ env.NODE_VERSION }}
-    # - name: Build Nest API
-    #   run: |
-    #     npm install
-    #     npm run build --if-present
-    #     npm run test --if-present
-    - name: Build dashboard app
-      working-directory: ./app
+    - name: Build Nest API
       run: |
         npm install
-        npm run build
+        npm run build --if-present
+        npm run test --if-present
+    # - name: Build dashboard app
+    #   working-directory: ./app
+    #   run: |
+    #     npm install
+    #     npm run build
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
