@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - uses: azure/docker-login@v1
+        with:
+          login-server: nestsettingsregistry.azurecr.io
+          username: ${{ secrets.AZ_ACR_USERNAME }}
+          password: ${{ secrets.AZ_ACR_PASSWORD }}
+
+      - run: |
+          docker build . -t nestsettingsregistry.azurecr.io/appdb:${{ github.sha }}
+          docker push nestsettingsregistry.azurecr.io/appdb:${{ github.sha }}
