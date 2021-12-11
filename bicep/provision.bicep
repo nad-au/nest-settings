@@ -2,12 +2,7 @@
 @minLength(10)
 param databasePassword string
 
-@allowed([
-  'production'
-])
-param environmentName string
-
-var environment = json(loadTextContent('./env.${environmentName}.json'))
+var environment = json(loadTextContent('./env.json'))
 
 module container 'modules/container_registry.bicep' = {
   name: 'container'
@@ -19,14 +14,14 @@ module container 'modules/container_registry.bicep' = {
 module webapp 'modules/webapp.bicep' = {
   name: 'webapp'
   params: {
-    webAppSettings: env.outputs.environment.webApp
+    webAppSettings: environment.webApp
   }
 }
 
 module database 'modules/postgres_db.bicep' = {
   name: 'database'
   params: {
-    serverSettings: env.outputs.environment.database
+    serverSettings: environment.database
     password: databasePassword
   }
 }
