@@ -9,7 +9,7 @@ param containerRegistryName string
 
 var location = resourceGroup().location
 
-resource containerRegistry 'Microsoft.ContainerRegistry/registries@2019-05-01' existing = {
+resource containerRegistry 'Microsoft.ContainerRegistry/registries@2021-06-01-preview' existing = {
   name: containerRegistryName
 }
 

@@ -4,7 +4,7 @@ param containerRegistrySettings object = {
   tier: ''
 }
 
-resource registry 'Microsoft.ContainerRegistry/registries@2021-08-01-preview' = {
+resource registry 'Microsoft.ContainerRegistry/registries@2021-06-01-preview' = {
   name: containerRegistrySettings.containerRegistryName
   location: resourceGroup().location 
   tags: {
