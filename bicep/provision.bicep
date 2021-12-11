@@ -7,17 +7,12 @@ param databasePassword string
 ])
 param environmentName string
 
-module env './env.bicep' = {
-  name: 'env'
-  params: {
-    environmentName: environmentName
-  }
-}
+var environment = json(loadTextContent('./env.${environmentName}.json'))
 
 module container 'modules/container_registry.bicep' = {
   name: 'container'
   params: {
-    containerRegistrySettings: env.outputs.environment.containerRegistry
+    containerRegistrySettings: environment.containerRegistry
   }
 }
 
@@ -25,7 +20,6 @@ module webapp 'modules/webapp.bicep' = {
   name: 'webapp'
   params: {
     webAppSettings: env.outputs.environment.webApp
-    containerRegistryName: env.outputs.environment.containerRegistry.containerRegistryName
   }
 }
 
