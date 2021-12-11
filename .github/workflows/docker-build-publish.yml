@@ -26,7 +26,7 @@ jobs:
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           images: 'nestsettingsregistry.azurecr.io/appdb:${{ github.sha }}'
           app-settings-json: |
-          [
+            [
              {
                  "name": "DATABASE_USER",
                  "value": "${{ secrets.AZ_DATABASE_USERNAME }}",
@@ -52,4 +52,4 @@ jobs:
                  "value": "pg-nest-settings.postgres.database.azure.com",
                  "slotSetting": false
              }
-          ]
+            ]
