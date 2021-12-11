@@ -5,6 +5,17 @@ param environmentName string
 
 var environmentSettings = {
   production: {
+    container: {
+      containerRegistryName: 'nestsettingsregistry'
+      sku: 'Basic'
+      tier: 'Basic'
+    }
+    webApp: {
+      appServiceName: 'nest-settings'
+      servicePlanName: 'sp-nest-settings'
+      sku: 'F1'
+      tier: 'Free'
+    }
     database: {
       serverName: 'pg-nest-settings'
       databaseName: 'nest-settings'

@@ -3,13 +3,7 @@ on:
     branches: [ main ]
 
 env:
-  AZ_CLI_VERSION: '2.30.0'
-  AZ_SUBSCRIPTION: 'c9d9b3ef-44e7-470e-bfce-7d0938297a3a'
-  AZ_LOCATION: 'australiaeast'
   AZ_RESOURCE_GROUP: 'rg-nest-settings'
-  AZ_WEBAPP_NAME: 'nest-settings'
-  AZ_DATABASE_NAME: 'pg-nest-settings'
-  DATABASE_NAME: 'nest-settings'
 
 jobs:
   create-resources:
@@ -26,7 +20,7 @@ jobs:
     - name: Provision resources
       uses: azure/arm-deploy@v1
       with:
-        subscriptionId: ${{ env.AZ_SUBSCRIPTION }}
+        subscriptionId: ${{ secrets.AZ_SUBSCRIPTION }}
         resourceGroupName: ${{ env.AZ_RESOURCE_GROUP }}
         template: bicep/provision.bicep
         parameters: password=${{ secrets.AZ_DATABASE_PASSWORD }} environmentName=production

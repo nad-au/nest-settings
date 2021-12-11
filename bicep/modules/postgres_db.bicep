@@ -47,7 +47,7 @@ resource database 'Microsoft.DBforPostgreSQL/flexibleServers/databases@2021-06-0
   parent: database_server
 }
 
-resource symbolicname 'Microsoft.DBforPostgreSQL/flexibleServers/firewallRules@2021-06-01' = {
+resource firewall 'Microsoft.DBforPostgreSQL/flexibleServers/firewallRules@2021-06-01' = {
   name: 'AllowAllAzureServicesAndResourcesWithinAzureIps'
   parent: database_server
   properties: {
