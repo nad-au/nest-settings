@@ -1,6 +1,9 @@
 on:
   workflow_dispatch:
 
+env:
+  AZURE_WEBAPP_NAME: nest-settings    # set this to your application's name
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,6 +22,34 @@ jobs:
 
       - uses: azure/webapps-deploy@v2
         with:
-          app-name: 'nest-settings'
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           images: 'nestsettingsregistry.azurecr.io/appdb:${{ github.sha }}'
+          app-settings-json: |
+          [
+             {
+                 "name": "DATABASE_USER",
+                 "value": "${{ secrets.AZ_DATABASE_USERNAME }}",
+                 "slotSetting": false
+             },
+             {
+                 "name": "DATABASE_PASSWORD",
+                 "value": "${{ secrets.AZ_DATABASE_PASSWORD }}",
+                 "slotSetting": false
+             },
+             {
+                 "name": "DATABASE_NAME",
+                 "value": "nest-settings",
+                 "slotSetting": false
+             },
+             {
+                 "name": "DATABASE_PORT",
+                 "value": "5432",
+                 "slotSetting": false
+             },
+             {
+                 "name": "DATABASE_HOST",
+                 "value": "pg-nest-settings.postgres.database.azure.com",
+                 "slotSetting": false
+             }
+          ]
