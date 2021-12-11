@@ -21,6 +21,9 @@ resource appService 'microsoft.web/sites@2020-06-01' = {
   name: webAppSettings.appServiceName
   location: location
   properties: {
+    siteConfig: {
+      linuxFxVersion: 'NODE|14-lts'
+    }
     serverFarmId: servicePlan.id
   }
 }
