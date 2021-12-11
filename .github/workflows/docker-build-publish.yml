@@ -63,5 +63,10 @@ jobs:
                  "name": "DATABASE_HOST",
                  "value": "pg-nest-settings.postgres.database.azure.com",
                  "slotSetting": false
-             }
+             },
+             {
+                 "name": "WEBSITES_PORT",
+                 "value": "3000",
+                 "slotSetting": false
+             },
             ]
