@@ -23,4 +23,4 @@ jobs:
         subscriptionId: ${{ secrets.AZ_SUBSCRIPTION }}
         resourceGroupName: ${{ env.AZ_RESOURCE_GROUP }}
         template: bicep/provision.bicep
-        parameters: databasePassword=${{ secrets.AZ_DATABASE_PASSWORD }} environmentName=production
+        parameters: databasePassword=${{ secrets.AZ_DATABASE_PASSWORD }}
