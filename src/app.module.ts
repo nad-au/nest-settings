@@ -7,8 +7,6 @@ import { AccountsModule } from './accounts/accounts.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import databaseConfig from './config/database.config';
 import { createConnection } from 'typeorm';
-import { join } from 'path';
-import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
@@ -19,8 +17,6 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      // Use useFactory, useClass, or useExisting
-      // to configure the ConnectionOptions.
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
         host: configService.get('database.host'),
@@ -30,9 +26,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
         database: configService.get('database.name'),
         autoLoadEntities: true,
         ssl:
-        process.env.NODE_ENV === 'production'
-          ? { rejectUnauthorized: false }
-          : false,
+          process.env.NODE_ENV === 'production'
+            ? { rejectUnauthorized: false }
+            : false,
       }),
       // connectionFactory receives the configured ConnectionOptions
       // and returns a Promise<Connection>.
@@ -43,7 +39,6 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     }),
     SettingsModule,
     AccountsModule,
-    ServeStaticModule.forRoot({ rootPath: join(__dirname, '..', 'app') }),
   ],
   controllers: [AppController],
   providers: [AppService],
