@@ -29,6 +29,10 @@ import { ServeStaticModule } from '@nestjs/serve-static';
         password: configService.get('database.password'),
         database: configService.get('database.name'),
         autoLoadEntities: true,
+        ssl:
+        process.env.NODE_ENV === 'production'
+          ? { rejectUnauthorized: false }
+          : false,
       }),
       // connectionFactory receives the configured ConnectionOptions
       // and returns a Promise<Connection>.
