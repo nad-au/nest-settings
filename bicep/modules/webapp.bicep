@@ -14,6 +14,9 @@ resource servicePlan 'microsoft.web/serverFarms@2020-06-01' = {
     name: webAppSettings.sku
     tier: webAppSettings.tier
   }
+  properties: {
+    reserved: true
+  }
   kind: 'linux'
 }
 
