@@ -8,7 +8,6 @@ var environmentSettings = {
     container: {
       containerRegistryName: 'nestsettingsregistry'
       sku: 'Basic'
-      tier: 'Basic'
     }
     webApp: {
       appServiceName: 'nest-settings'

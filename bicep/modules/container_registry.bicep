@@ -1,7 +1,6 @@
 param containerRegistrySettings object = {
   containerRegistryName: ''
   sku: ''
-  tier: ''
 }
 
 resource registry 'Microsoft.ContainerRegistry/registries@2021-06-01-preview' = {
@@ -13,7 +12,6 @@ resource registry 'Microsoft.ContainerRegistry/registries@2021-06-01-preview' = 
   }
   sku: {
     name: containerRegistrySettings.sku
-    tier: containerRegistrySettings.tier
   }
   properties: {
     adminUserEnabled: true
