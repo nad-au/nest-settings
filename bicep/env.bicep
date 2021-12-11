@@ -5,7 +5,7 @@ param environmentName string
 
 var environmentSettings = {
   production: {
-    container: {
+    containerRegistry: {
       containerRegistryName: 'nestsettingsregistry'
       sku: 'Basic'
     }
