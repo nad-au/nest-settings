@@ -1,1 +1,0 @@
-{"version":3,"file":"EntityBase.js","sourceRoot":"","sources":["../../../src/common/entities/EntityBase.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,qCAA6D;AAE7D,MAAsB,UAAU;CAU/B;AANC;IAHC,IAAA,0BAAgB,EAAC;QAChB,IAAI,EAAE,YAAY;KACnB,CAAC;8BACS,IAAI;6CAAC;AAKhB;IAHC,IAAA,0BAAgB,EAAC;QAChB,IAAI,EAAE,aAAa;KACpB,CAAC;8BACU,IAAI;8CAAC;AATnB,gCAUC"}
