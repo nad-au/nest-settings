@@ -1,4 +1,4 @@
-param webAppSettings object = {
+param apiSettings object = {
   appServiceName: ''
   servicePlanName: ''
   sku: ''
@@ -7,10 +7,10 @@ param webAppSettings object = {
 var location = resourceGroup().location
 
 resource servicePlan 'microsoft.web/serverFarms@2020-06-01' = {
-  name: webAppSettings.servicePlanName
+  name: apiSettings.servicePlanName
   location: location
   sku: {
-    name: webAppSettings.sku
+    name: apiSettings.sku
   }
   properties: {
     reserved: true
@@ -19,7 +19,7 @@ resource servicePlan 'microsoft.web/serverFarms@2020-06-01' = {
 }
 
 resource appService 'microsoft.web/sites@2020-06-01' = {
-  name: webAppSettings.appServiceName
+  name: apiSettings.appServiceName
   location: location
   properties: {
     siteConfig: {

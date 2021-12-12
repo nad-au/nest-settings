@@ -11,10 +11,10 @@ module container 'modules/container_registry.bicep' = {
   }
 }
 
-module webapp 'modules/webapp.bicep' = {
-  name: 'webapp'
+module api 'modules/api.bicep' = {
+  name: 'api'
   params: {
-    webAppSettings: environment.webApp
+    apiSettings: environment.api
   }
 }
 
