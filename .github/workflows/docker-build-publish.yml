@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: nest-settings    # set this to your application's name
+  AZURE_WEBAPP_NAME: nest-settings-api
 
 jobs:
   build:
