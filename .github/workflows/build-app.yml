@@ -1,4 +1,4 @@
-name: Deploy Static Web App
+name: Build App
 
 on:
   push:
@@ -12,6 +12,7 @@ on:
       - main
     paths:
       - app/**
+  workflow_dispatch:
 
 jobs:
   build_and_deploy_job:
