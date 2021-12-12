@@ -1,3 +1,5 @@
+name: Provision Azure resources
+
 on:
   workflow_dispatch:
     branches: [ main ]
