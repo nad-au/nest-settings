@@ -54,10 +54,10 @@ jobs:
         azcliversion: ${{ env.AZ_CLI_VERSION }}
         inlineScript: |
           username=$(az acr credential show --resource-group ${{ env.AZ_RESOURCE_GROUP }} --name ${{ env.AZ_ACR_NAME }} --query username)
-          echo "::add-mask::$username"
+          #echo "::add-mask::$username"
           echo "::set-output name=username::$username"
           password=$(az acr credential show --resource-group ${{ env.AZ_RESOURCE_GROUP }} --name ${{ env.AZ_ACR_NAME }} --query passwords[0].value)
-          echo "::add-mask::$password"
+          #echo "::add-mask::$password"
           echo "::set-output name=password::$password"
     - name: Set Secret
       uses: hmanzur/actions-set-secret@v2.0.0
