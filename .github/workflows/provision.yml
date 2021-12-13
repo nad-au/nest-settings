@@ -53,7 +53,7 @@ jobs:
       with:
         azcliversion: ${{ env.AZ_CLI_VERSION }}
         inlineScript: |
-          creds=$(az acr credential show --resource-group ${{ env.AZ_RESOURCE_GROUP }} --name ${{ env.AZ_ACR_NAME }} --query username)
+          creds=$(az acr credential show --resource-group ${{ env.AZ_RESOURCE_GROUP }} --name ${{ env.AZ_ACR_NAME }})
           creds="${creds//'%'/'%25'}"
           creds="${creds//$'\n'/'%0A'}"
           creds="${creds//$'\r'/'%0D'}"
