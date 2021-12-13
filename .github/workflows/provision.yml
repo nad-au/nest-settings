@@ -53,23 +53,22 @@ jobs:
       with:
         azcliversion: ${{ env.AZ_CLI_VERSION }}
         inlineScript: |
-          username=$(az acr credential show --resource-group ${{ env.AZ_RESOURCE_GROUP }} --name ${{ env.AZ_ACR_NAME }} --query username)
-          #echo "::add-mask::$username"
-          echo "::set-output name=username::$username"
-          password=$(az acr credential show --resource-group ${{ env.AZ_RESOURCE_GROUP }} --name ${{ env.AZ_ACR_NAME }} --query passwords[0].value)
-          #echo "::add-mask::$password"
-          echo "::set-output name=password::$password"
+          creds=$(az acr credential show --resource-group ${{ env.AZ_RESOURCE_GROUP }} --name ${{ env.AZ_ACR_NAME }} --query username)
+          creds="${creds//'%'/'%25'}"
+          creds="${creds//$'\n'/'%0A'}"
+          creds="${creds//$'\r'/'%0D'}"
+          echo "::set-output name=creds::$creds"
     - name: Set Secret
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
         name: 'AZ_ACR_USERNAME'
-        value: ${{ steps.get-acr.outputs.username }}
+        value: ${{fromJson(steps.get-acr.outputs.creds).username}}
         repository: ${{ github.repository }}
         token: ${{ secrets.ACCESS_TOKEN }}
     - name: Set Secret
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
         name: 'AZ_ACR_PASSWORD'
-        value: ${{ steps.get-acr.outputs.password }}
+        value: ${{fromJson(steps.get-acr.outputs.creds)[0].value}}
         repository: ${{ github.repository }}
         token: ${{ secrets.ACCESS_TOKEN }}        

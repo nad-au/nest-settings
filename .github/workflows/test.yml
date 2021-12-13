@@ -33,6 +33,11 @@ jobs:
                 "slotSetting": false
               },
               {
+                "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
+                "value": "${{ secrets.AZ_ACR_PASSWORD }}",
+                "slotSetting": false
+              },
+              {
                 "name": "DATABASE_USER",
                 "value": "${{ secrets.AZ_DATABASE_USERNAME }}",
                 "slotSetting": false
