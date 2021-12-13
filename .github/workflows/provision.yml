@@ -69,6 +69,6 @@ jobs:
       uses: hmanzur/actions-set-secret@v2.0.0
       with:
         name: 'AZ_ACR_PASSWORD'
-        value: ${{fromJson(steps.get-acr.outputs.creds)[0].value}}
+        value: ${{fromJson(steps.get-acr.outputs.creds).passwords[0].value}}
         repository: ${{ github.repository }}
         token: ${{ secrets.ACCESS_TOKEN }}        
