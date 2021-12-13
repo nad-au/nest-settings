@@ -57,7 +57,6 @@ jobs:
           creds="${creds//'%'/'%25'}"
           creds="${creds//$'\n'/'%0A'}"
           creds="${creds//$'\r'/'%0D'}"
-          echo "::add-mask::$creds"
           echo "::set-output name=creds::$creds"
     - name: Set Secret
       uses: hmanzur/actions-set-secret@v2.0.0
