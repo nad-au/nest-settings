@@ -28,6 +28,11 @@ jobs:
                 "slotSetting": false
               },
               {
+                "name": "DOCKER_REGISTRY_SERVER_USERNAME",
+                "value": "${{ secrets.AZ_ACR_USERNAME }}",
+                "slotSetting": false
+              },
+              {
                 "name": "DATABASE_USER",
                 "value": "${{ secrets.AZ_DATABASE_USERNAME }}",
                 "slotSetting": false
