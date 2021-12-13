@@ -24,7 +24,7 @@ jobs:
             [
               {
                 "name": "DOCKER_REGISTRY_SERVER_URL",
-                "value": "https://${{ env.ACR_NAME }}.azurecr.io",
+                "value": "https://nestsettingsregistry.azurecr.io",
                 "slotSetting": false
               },
               {
