@@ -28,4 +28,4 @@ COPY --from=development /usr/src/app/dist ./dist
 
 EXPOSE 3000
 
-CMD ["npm", "run", "start:docker"]
+CMD ["npm", "run", "docker:prod"]
