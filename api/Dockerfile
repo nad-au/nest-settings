@@ -28,4 +28,4 @@ COPY --from=development /usr/src/app/dist ./dist
 
 EXPOSE 3000
 
-CMD ["npm", "run", "typeorm", "--", "migration:run", "&&", "node", "dist/main"]
+CMD ["npm", "run", "start", "docker"]
