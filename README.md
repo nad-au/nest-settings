@@ -7,13 +7,19 @@ An implementation of [Feature Flags](https://martinfowler.com/articles/feature-t
 - [Node](https://nodejs.org/en/)
 - [Docker](https://www.docker.com/)
 
-## Installation
+## Installation - API
+
+Navigate to API directory
+
+```bash
+$ cd api/
+```
 
 ```bash
 $ npm install
 ```
 
-Run Docker-Compose to launch the Postgres & Redis containers
+Run Docker-Compose to launch the Postgres, Redis & app containers
 
 ``` bash
 $ docker-compose up
@@ -22,8 +28,8 @@ $ docker-compose up
 Run migrations to provision your database schema
 
 ``` bash
-npm run build
-npm run typeorm migration:run
+$ npm run build
+$ npm run migrations
 ```
 
 ## Running the app
