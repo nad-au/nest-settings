@@ -1,13 +1,15 @@
+const databaseConfig = require('./src/config/database.config')
+
 module.exports = {
-    type: 'postgres',
-    host: 'localhost',
-    port: 5432,
-    username: 'postgres',
-    password: 'pass123',
-    database: 'settings',
-    entities: ['dist/**/*.entity.js'],
-    migrations: ['dist/migrations/*.js'],
-    cli: {
-      migrationsDir: 'src/migrations',
-    },
-  };
+  type: 'postgres',
+  host: databaseConfig.default().host,
+  port: 5432,
+  username: databaseConfig.default().user,
+  password: databaseConfig.default().password,
+  database: databaseConfig.default().name,
+  entities: ['dist/**/*.entity.js'],
+  migrations: ['dist/migrations/*.js'],
+  cli: {
+    migrationsDir: 'src/migrations',
+  },
+};

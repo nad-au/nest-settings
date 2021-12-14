@@ -13,12 +13,37 @@ services:
       - ${PORT}:${PORT}
       - 9229:9229
     command: npm run start:dev
-    env_file:
-      - .env
+    # env_file:
+    #   - .env
+    environment:
+      - DATABASE_USER
+      - DATABASE_PASSWORD
+      - DATABASE_NAME
+      - DATABASE_PORT
+      - DATABASE_HOST
     networks:
       - webnet
     depends_on:
       - redis
+      - postgres
+  migration:
+    container_name: migration
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: npm run typeorm migration:run
+    environment:
+      - DATABASE_USER
+      - DATABASE_PASSWORD
+      - DATABASE_NAME
+      - DATABASE_PORT
+      - DATABASE_HOST
+    networks:
+      - webnet
+    depends_on:
       - postgres
   redis:
     container_name: redis
