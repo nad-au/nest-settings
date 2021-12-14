@@ -20,6 +20,7 @@ ENV NODE_ENV=${NODE_ENV}
 WORKDIR /usr/src/app
 
 COPY package*.json ./
+COPY ormconfig*.js ./
 
 RUN npm install --only=production
 
@@ -27,4 +28,4 @@ COPY --from=development /usr/src/app/dist ./dist
 
 EXPOSE 3000
 
-CMD ["node", "dist/main"]
+CMD ["npm", "run", "typeorm", "--", "migration:run", "&&", "node", "dist/main"]
