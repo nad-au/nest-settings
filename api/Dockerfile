@@ -1,5 +1,8 @@
 FROM node:14.18-alpine As development
 
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
+
 WORKDIR /usr/src/app
 
 COPY package*.json ./
