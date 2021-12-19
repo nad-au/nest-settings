@@ -43,18 +43,21 @@ export class Setting extends EntityBase {
   @ManyToOne(() => SettingCategory, (category) => category.settings, {
     nullable: false,
     onDelete: 'CASCADE',
+    eager: true,
   })
   category: SettingCategory;
 
   @ManyToOne(() => SettingType, (type) => type.settings, {
     nullable: false,
     onDelete: 'CASCADE',
+    eager: true,
   })
   type: SettingType;
 
   @ManyToOne(() => SettingDataType, (dataType) => dataType.settings, {
     nullable: false,
     onDelete: 'CASCADE',
+    eager: true,
   })
   dataType: SettingDataType;
 

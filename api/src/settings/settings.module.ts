@@ -1,18 +1,22 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Setting } from './entities/setting.entity';
-import { SettingCategory } from './entities/settingCategory.entity';
-import { SettingDataType } from './entities/settingDataType.entity';
-import { SettingType } from './entities/settingType.entity';
+import { SettingTypeRepository } from './repositories/setingTypeRepository';
+import { SettingCategoryRepository } from './repositories/settingCategoryRepository';
+import { SettingDataTypeRepository } from './repositories/settingDataTypeRepository';
+import { SettingRepository } from './repositories/settingRepository';
+import { SettingsController } from './settings.controller';
+import { SettingsService } from './settings.service';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([
-      Setting,
-      SettingCategory,
-      SettingType,
-      SettingDataType,
+      SettingRepository,
+      SettingCategoryRepository,
+      SettingTypeRepository,
+      SettingDataTypeRepository,
     ]),
   ],
+  providers: [SettingsService],
+  controllers: [SettingsController],
 })
 export class SettingsModule {}

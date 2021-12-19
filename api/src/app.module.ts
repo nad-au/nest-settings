@@ -10,15 +10,15 @@ import { createConnection, getConnectionOptions } from 'typeorm';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true
+      isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async () =>
-    Object.assign(await getConnectionOptions(), {
-      autoLoadEntities: true,
-    }),
+        Object.assign(await getConnectionOptions(), {
+          autoLoadEntities: true,
+        }),
       // connectionFactory receives the configured ConnectionOptions
       // and returns a Promise<Connection>.
       connectionFactory: async (options) => {
