@@ -37,6 +37,48 @@ export class Initial1638137273826 implements MigrationInterface {
     await queryRunner.query(
       `ALTER TABLE "settings" ADD CONSTRAINT "FK_fe946d0504ee17f4a8a7dd04829" FOREIGN KEY ("dataTypeId") REFERENCES "setting_data_types"("id") ON DELETE CASCADE ON UPDATE NO ACTION`,
     );
+    await queryRunner.query(
+      `INSERT INTO "setting_data_types" (name) VALUES ('text')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_data_types" (name) VALUES ('integer')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_data_types" (name) VALUES ('float')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_data_types" (name) VALUES ('currency')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_data_types" (name) VALUES ('boolean')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_data_types" (name) VALUES ('date')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_data_types" (name) VALUES ('json')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_data_types" (name) VALUES ('url')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_data_types" (name) VALUES ('mobile')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_data_types" (name) VALUES ('custom')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_types" (name) VALUES ('system')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_types" (name) VALUES ('account')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_categories" (name) VALUES ('settings')`
+    );
+    await queryRunner.query(
+      `INSERT INTO "setting_categories" (name) VALUES ('flags')`
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
