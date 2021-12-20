@@ -1,7 +1,6 @@
 import { EntityRepository } from 'typeorm/decorator/EntityRepository';
 import { Repository } from 'typeorm/repository/Repository';
 import { Setting } from '../entities/setting.entity';
-import { SettingType } from '../entities/settingType.entity';
 
 @EntityRepository(Setting)
 export class SettingRepository extends Repository<Setting> {
